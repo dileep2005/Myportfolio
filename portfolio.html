@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>R Dileep — Portfolio & Resume</title>
+  <meta name="description" content="Portfolio + Full Resume of R Dileep — AI & ML" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#050816;
+      --muted:#9fb0c8;
+      --accent1:#7c3aed;
+      --accent2:#06b6d4;
+      --glass: rgba(255,255,255,0.03);
+      --card: rgba(255,255,255,0.03);
+      --radius:16px;
+      --maxw:1100px;
+      --gap:110px; /* section spacing */
+    }
+
+    /* Base */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Arial,sans-serif;background: radial-gradient(900px 400px at 10% 10%, rgba(124,58,237,0.04), transparent 6%), radial-gradient(700px 350px at 90% 90%, rgba(6,182,212,0.02), transparent 6%), linear-gradient(180deg,var(--bg), #071029); color:#e8f3ff; -webkit-font-smoothing:antialiased;}
+    a{color:inherit}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:36px 20px;}
+
+    /* header / nav */
+    header{position:sticky;top:14px;z-index:120;backdrop-filter: blur(8px);padding:8px 0}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center;text-decoration:none}
+    .logo{width:68px;height:68px;border-radius:16px;display:grid;place-items:center;font-weight:900;background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#03111a;font-size:18px;box-shadow:0 12px 40px rgba(124,58,237,0.12)}
+    nav.primary{display:flex;gap:10px;align-items:center}
+    nav.primary a{padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;color:var(--muted);font-size:0.95rem;transition:all .18s}
+    nav.primary a.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021020;box-shadow:0 8px 30px rgba(3,8,17,0.6)}
+    .resume-btn{padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021020;font-weight:800;text-decoration:none;border:0}
+
+    /* hero */
+    .hero{padding:calc(var(--gap)/2) 0 40px;display:grid;grid-template-columns:1fr 420px;gap:44px;align-items:start}
+    .hero-left{max-width:740px}
+    .eyebrow{color:var(--muted);letter-spacing:1px;font-weight:600;margin-bottom:6px}
+    h1{font-family:'Space Grotesk',Inter,system-ui;font-size:2.6rem;margin:6px 0 12px}
+    .typewriter{color:var(--accent2);font-weight:800}
+    .lead{color:var(--muted);line-height:1.7;font-size:1.02rem}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);font-weight:800;text-decoration:none;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021020}
+    .btn.ghost{background:transparent;color:var(--muted)}
+
+    .stats{display:flex;gap:12px;margin-top:22px}
+    .stat{padding:12px 18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));text-align:center;min-width:100px}
+    .stat b{display:block;font-size:1.3rem;color:var(--accent2)}
+
+    /* profile card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:20px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 22px 50px rgba(2,6,23,0.6)}
+    .profile{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;padding:26px}
+    .avatar{width:220px;height:220px;border-radius:16px;overflow:hidden;border:6px solid rgba(255,255,255,0.04);box-shadow:0 30px 70px rgba(6,182,212,0.04)}
+    .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .profile h3{margin:0;font-size:1.25rem}
+    .profile .muted{color:var(--muted)}
+
+    .contact-links{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:8px}
+    .contact-links a{display:block;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);text-decoration:none;font-weight:700;color:var(--muted);background:transparent;transition:transform .15s}
+    .contact-links a:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(6,182,212,0.06);color: #021020;background:linear-gradient(90deg,var(--accent1),var(--accent2))}
+
+    /* sections */
+    section.section{padding:var(--gap) 0}
+    .section-title{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+    .section-title h2{margin:0;font-size:1.4rem}
+    .section-deco{height:3px;width:160px;border-radius:6px;background:linear-gradient(90deg,var(--accent1),var(--accent2));opacity:0.95}
+
+    .grid-two{display:grid;grid-template-columns:1fr 420px;gap:26px}
+    .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px}
+    .skill{padding:14px;border-radius:12px;text-align:center;font-weight:800;border:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));transition:transform .22s}
+    .skill:hover{transform:translateY(-8px);box-shadow:0 22px 40px rgba(124,58,237,0.12)}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+    .project{perspective:1200px}
+    .project-inner{transition:transform .5s cubic-bezier(.2,.9,.3,1);transform-style:preserve-3d;border-radius:12px;overflow:hidden}
+    .project:hover .project-inner{transform:translateY(-8px) scale(1.02)}
+    .project-front{min-height:210px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .project-thumb{height:130px;background-size:cover;background-position:center;border-radius:10px;margin-bottom:12px}
+    .project-tags{display:flex;gap:10px;flex-wrap:wrap}
+    .tag{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:800}
+
+    .resume-card{padding:24px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+    .resume-section{margin-top:14px}
+    .resume-section h4{margin:8px 0}
+    .bullet{margin-left:18px;line-height:1.7}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(18px);transition:all .8s cubic-bezier(.2,.9,.3,1)}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* small / responsive */
+    .small{font-size:0.94rem;color:var(--muted)}
+    .ghost-link{color:var(--muted);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,0.03);padding-bottom:2px}
+    @media (max-width:1000px){.projects-grid{grid-template-columns:repeat(2,1fr)}.grid-two{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.avatar{width:180px;height:180px}}
+    @media (max-width:640px){nav.primary{display:none}.hero{padding:60px 0;gap:20px}.avatar{width:140px;height:140px}.container{padding:18px}.projects-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <!-- PARTICLES CANVAS -->
+  <canvas id="particles" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+
+  <div class="wrap" style="position:relative;z-index:1;">
+    <!-- HEADER -->
+    <header>
+      <div class="nav">
+        <a class="brand" href="#home">
+          <div class="logo">RD</div>
+          <div style="line-height:1;">
+            <div style="font-weight:900;color:var(--accent1)">R Dileep</div>
+            <div class="small" style="color:var(--muted)">B.Tech (CSE) • AI & ML</div>
+          </div>
+        </a>
+
+        <nav class="primary" id="nav">
+          <a href="#home" data-target="home">Home</a>
+          <a href="#about" data-target="about">About</a>
+          <a href="#skills" data-target="skills">Skills</a>
+          <a href="#projects" data-target="projects">Projects</a>
+          <a href="#experience" data-target="experience">Experience</a>
+          <a href="#resume" data-target="resume">Resume</a>
+          <a href="#contact" data-target="contact">Contact</a>
+        </nav>
+
+        <a class="resume-btn" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <div class="eyebrow reveal">Hello — I'm</div>
+        <h1 class="reveal">R Dileep <span class="typewriter" id="typewriter"></span></h1>
+        <p class="lead reveal">Aspiring Computer Science graduate building clean web apps and practical machine learning tools. I prefer readable, modular code and thoughtful design that helps users.</p>
+
+        <div class="cta reveal">
+          <a class="btn primary" href="#contact">Hire me</a>
+          <a class="btn ghost" href="#projects">See projects</a>
+        </div>
+
+        <div class="stats reveal">
+          <div style="display:flex;gap:12px;margin-top:12px">
+            <div class="stat"><b id="countProjects">0</b><div class="small">Projects</div></div>
+            <div class="stat"><b id="countIntern">0</b><div class="small">Internships</div></div>
+            <div class="stat"><b id="countCgpa">0</b><div class="small">CGPA</div></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card profile reveal" style="align-self:start">
+        <div class="avatar" title="Profile photo">
+          <!-- put profile.jpg in same folder; fallback text 'RD' on error -->
+          <img src="/photo.jpg" alt="R Dileep — profile" onerror="this.style.display='none'; this.parentNode.style.background='linear-gradient(135deg,var(--accent1),var(--accent2))'; this.parentNode.textContent='RD'">
+        </div>
+        <h3>R Dileep</h3>
+        <div class="small muted">B.Tech — Siddharth Institute of Engineering & Technology</div>
+
+        <div style="width:100%;margin-top:6px" class="contact-mini">
+          <div class="small">📧 <a class="ghost-link" href="mailto:urzdileep@gmail.com">urzdileep@gmail.com</a></div>
+          <div class="small">📱 <a class="ghost-link" href="tel:+916305154247">+91-6305154247</a></div>
+          <div class="small">📍 Puttur, Andhra Pradesh</div>
+        </div>
+
+        <div class="contact-links">
+          <a href="resume.pdf" class="btn primary" target="_blank" rel="noopener">Download Resume (PDF)</a>
+          <a href="mailto:urzdileep@gmail.com">Email me</a>
+          <a href="https://github.com/dileep2005" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/r-dileep-00b733304/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="section-deco"></div>
+      </div>
+
+      <div class="grid-two">
+        <div class="card reveal">
+          <h3 style="margin-top:0">About me</h3>
+          <p class="small muted">I am an aspiring Computer Science graduate with hands-on experience in responsive web development and machine learning concepts. I enjoy building small, production-ready projects that help me learn and solve real problems.</p>
+
+          <div style="margin-top:18px">
+            <h4 style="margin:6px 0">Education (summary)</h4>
+            <p class="muted small">Siddharth Institute of Engineering and Technology — B.Tech (CSE), 2022–2026 — CGPA: 8.0/10</p>
+          </div>
+
+          <div style="margin-top:12px">
+            <h4 style="margin:6px 0">Certifications (summary)</h4>
+            <ul class="small muted">
+              <li>Programming in Java — NPTEL</li>
+              <li>Joy of Computing using Python — NPTEL</li>
+              <li>Python & SQL basics — HackerRank</li>
+              <li>Python 101 for Data Science — IBM</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card reveal" id="skills">
+          <h3 style="margin-top:0">Skills</h3>
+          <div class="skill-grid">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Java (OOP)</div>
+            <div class="skill">Python</div>
+            <div class="skill">SQL / MySQL</div>
+            <div class="skill">Flask</div>
+            <div class="skill">Machine Learning</div>
+            <div class="skill">DSA & OOP</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <div class="section-deco"></div>
+      </div>
+
+      <p class="small muted reveal">Projects are included exactly as in the resume.</p>
+
+      <div class="projects-grid">
+        <!-- NeonVerse -->
+        <div class="project reveal">
+          <div class="project-inner">
+            <div class="project-front">
+              <div class="project-thumb" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22120%22><rect width=%22800%22 height=%22120%22 fill=%22%23071729%22 /><text x=%2240%22 y=%2276%22 font-size=%2238%22 fill=%22%23a0dce5%22>NeonVerse</text></svg>')"></div>
+              <div>
+                <h3>NeonVerse</h3>
+                <p class="small muted">Created a visually engaging text and graphics animation inspired by cyberpunk themes. Applied CSS keyframes, gradients, and multiple text-shadow layers to simulate neon lighting effects without using JavaScript. Focused on responsive design principles to ensure consistent visuals across devices.</p>
+              </div>
+              <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+              <div style="margin-top:12px;display:flex;gap:8px"><a class="btn ghost" href="#" onclick="alert('Add code/demo link')">Live / Code</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ExpenseTrack Pro -->
+        <div class="project reveal">
+          <div class="project-inner">
+            <div class="project-front">
+              <div class="project-thumb" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22120%22><rect width=%22800%22 height=%22120%22 fill=%22%230b1020%22 /><text x=%2240%22 y=%2276%22 font-size=%2238%22 fill=%22%23f7d07a%22>ExpenseTrack Pro</text></svg>')"></div>
+              <div>
+                <h3>ExpenseTrack Pro</h3>
+                <p class="small muted">Developed a Python-based personal finance tracker to record daily expenses, classify them into categories, and produce summary analytics. Implemented CSV-based data storage for portability and ease of use, and designed a text-based bar chart system to visualize spending patterns. Emphasized modular programming and file handling techniques.</p>
+              </div>
+              <div class="project-tags"><span class="tag">Python</span><span class="tag">CSV</span></div>
+              <div style="margin-top:12px;display:flex;gap:8px"><a class="btn ghost" href="#" onclick="alert('Add code link')">Code</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Portfolio Website -->
+        <div class="project reveal">
+          <div class="project-inner">
+            <div class="project-front">
+              <div class="project-thumb" style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22120%22><rect width=%22800%22 height=%22120%22 fill=%22%23081b16%22 /><text x=%2240%22 y=%2276%22 font-size=%2238%22 fill=%22%23ffb4c3%22>Portfolio Website</text></svg>')"></div>
+              <div>
+                <h3>Portfolio Website</h3>
+                <p class="small muted">Designed and deployed a responsive portfolio website to highlight academic background, skills, and projects. Utilized semantic HTML for accessibility, CSS flexbox and grid for layout management, and JavaScript for interactive elements like smooth scrolling and dynamic navigation. Optimized for mobile-first design and cross-browser compatibility.</p>
+              </div>
+              <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+              <div style="margin-top:12px;display:flex;gap:8px"><a class="btn ghost" href="#" onclick="alert('Live / Code link')">Live / Code</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-title"><h2>Experience & Internships</h2><div class="section-deco"></div></div>
+      <div class="card reveal">
+        <h3 style="margin-top:0">Internships</h3>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
+          <div>
+            <h4 style="margin:0">Web Design Intern — Assistive Infotech Pvt. Ltd.</h4>
+            <div class="small muted">3-week internship focused on HTML, CSS and JavaScript for responsive web design (MSME & AICTE).</div>
+          </div>
+          <div>
+            <h4 style="margin:0">Artificial Intelligence Intern — Code Genius Innovations Pvt. Ltd. (Jul 2025 — Sep 2025)</h4>
+            <div class="small muted">Hands-on AI concepts with training and implementation; contributed to data preprocessing and ML model training.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FULL RESUME -->
+    <section class="section" id="resume">
+      <div class="section-title"><h2>Full Resume</h2><div class="section-deco"></div></div>
+
+      <div class="resume-card reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div>
+            <h3 style="margin:0">R Dileep</h3>
+            <div class="small muted">urzdileep@gmail.com • +91-6305154247 • <a class="ghost-link" href="https://github.com/dileep2005" target="_blank">github.com/dileep2005</a> • <a class="ghost-link" href="https://www.linkedin.com/in/r-dileep-00b733304/" target="_blank">linkedin.com/in/r-dileep-00b733304</a></div>
+          </div>
+          <div style="display:flex;gap:10px">
+            <button id="toggleResume" class="btn ghost">Hide Full Resume</button>
+            <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
+          </div>
+        </div>
+
+        <div id="resumeContent" style="margin-top:18px">
+          <div class="resume-section">
+            <h4>OBJECTIVE</h4>
+            <p class="small">Aspiring Computer Science graduate seeking opportunities to apply programming, problem-solving, and web development skills in a dynamic organization while continuously learning emerging technologies.</p>
+          </div>
+
+          <div class="resume-section">
+            <h4>EDUCATION</h4>
+            <ul class="small">
+              <li><strong>Siddharth Institute of Engineering and Technology, Puttur</strong> — B.Tech in Computer Science and Engineering (2022–2026). CGPA: 8.0/10</li>
+              <li><strong>Sai Jyoti Junior College, Puttur</strong> — Board of Intermediate Education, AP (2020–2022). 65%</li>
+              <li><strong>Sri Chaitanya School, Puttur</strong> — Board of Secondary Education, AP (2019–2020). CGPA: 10/10</li>
+            </ul>
+          </div>
+
+          <div class="resume-section">
+            <h4>TECHNICAL SKILLS</h4>
+            <p class="small bullet">• Programming: Python, C, SQL</p>
+            <p class="small bullet">• Web: HTML, CSS, JavaScript</p>
+            <p class="small bullet">• Databases: MySQL</p>
+            <p class="small bullet">• Core CS: OOP, Data Structures & Algorithms, DBMS, OS</p>
+            <p class="small bullet">• Tools: Git, VS Code, Pycharm, MS Office</p>
+          </div>
+
+          <div class="resume-section">
+            <h4>CERTIFICATIONS</h4>
+            <ul class="small">
+              <li>Programming in Java — NPTEL</li>
+              <li>Joy of Computing using Python — NPTEL</li>
+              <li>Python Basic, SQL Basic, SQL Intermediate — HackerRank</li>
+              <li>Python 101 for Data Science — IBM Developer Skills Network</li>
+            </ul>
+          </div>
+
+          <div class="resume-section">
+            <h4>PROJECTS</h4>
+            <div class="small bullet"><strong>NeonVerse</strong> — Created a visually engaging text and graphics animation inspired by cyberpunk themes. Applied CSS keyframes, gradients, and multiple text-shadow layers to simulate neon lighting effects without using JavaScript. Focused on responsive design principles to ensure consistent visuals across devices. <em>Tech: HTML, CSS</em></div>
+            <div style="height:8px"></div>
+            <div class="small bullet"><strong>ExpenseTrack Pro</strong> — Developed a Python-based personal finance tracker to record daily expenses, classify them into categories, and produce summary analytics. Implemented CSV-based data storage for portability and ease of use, and designed a text-based bar chart system to visualize spending patterns. Emphasized modular programming and file handling techniques. <em>Tech: Python</em></div>
+            <div style="height:8px"></div>
+            <div class="small bullet"><strong>Portfolio Website</strong> — Designed and deployed a responsive portfolio website to highlight academic background, skills, and projects. Utilized semantic HTML for accessibility, CSS flexbox and grid for layout management, and JavaScript for interactive elements like smooth scrolling and dynamic navigation. Optimized for mobile-first design and cross-browser compatibility. <em>Tech: HTML, CSS, JavaScript</em></div>
+          </div>
+
+          <div class="resume-section">
+            <h4>INTERNSHIPS</h4>
+            <ul class="small">
+              <li><strong>Web Design Intern — Assistive Infotech Pvt. Ltd.</strong> — 3-week internship on HTML, CSS, and JavaScript for responsive web design.</li>
+              <li><strong>Artificial Intelligence Intern — Code Genius Innovations Pvt. Ltd.</strong> — (Jul 2025 – Sep 2025) Hands-on AI concepts with training and implementation.</li>
+            </ul>
+          </div>
+
+          <div class="resume-section" style="margin-top:12px">
+            <h4>CONTACT</h4>
+            <div class="small">Email: <a class="ghost-link" href="mailto:urzdileep@gmail.com">urzdileep@gmail.com</a></div>
+            <div class="small">GitHub: <a class="ghost-link" href="https://github.com/dileep2005" target="_blank">github.com/dileep2005</a></div>
+            <div class="small">LinkedIn: <a class="ghost-link" href="https://www.linkedin.com/in/r-dileep-00b733304/" target="_blank">linkedin.com/in/r-dileep-00b733304/</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-title"><h2>Contact</h2><div class="section-deco"></div></div>
+      <div class="grid-two">
+        <div class="card reveal">
+          <h3 style="margin-top:0">Get in touch</h3>
+          <p class="small muted">Open to internships and entry-level roles. Send a short message — I reply quickly.</p>
+
+          <form id="contactForm" style="margin-top:12px;display:grid;gap:12px">
+            <input name="name" placeholder="Your name" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
+            <input name="email" type="email" placeholder="Your email" required style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit">
+            <textarea name="message" rows="5" placeholder="Message" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit"></textarea>
+            <div style="display:flex;gap:10px;justify-content:flex-end">
+              <button class="btn primary" type="submit">Send message</button>
+              <a class="btn ghost" href="mailto:urzdileep@gmail.com">Email directly</a>
+            </div>
+            <div id="formResult" class="small muted" style="margin-top:8px"></div>
+          </form>
+        </div>
+
+        <div class="card reveal">
+          <h3>Quick Info</h3>
+          <p class="small"><strong>Email:</strong> <a class="ghost-link" href="mailto:urzdileep@gmail.com">urzdileep@gmail.com</a></p>
+          <p class="small"><strong>Phone:</strong> <a class="ghost-link" href="tel:+916305154247">+91-6305154247</a></p>
+          <p class="small"><strong>Location:</strong> Puttur, Andhra Pradesh</p>
+
+          <div style="margin-top:12px">
+            <div class="small muted">Find me</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <a class="btn ghost" href="https://github.com/dileep2005" target="_blank">GitHub</a>
+              <a class="btn ghost" href="https://www.linkedin.com/in/r-dileep-00b733304/" target="_blank">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="padding:40px 0;text-align:center;color:var(--muted)">&copy; <span id="year"></span> R Dileep — Portfolio & Resume</footer>
+  </div>
+
+  <!-- SCRIPTS: particles, typewriter, reveal, counters, nav -->
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* PARTICLES */
+    (function(){
+      const canvas = document.getElementById('particles');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth;
+      let h = canvas.height = innerHeight;
+      const particles = [];
+      const count = Math.floor((w*h)/60000); // adapt to screen
+      function rand(min,max){ return Math.random()*(max-min)+min}
+      function create(){
+        for(let i=0;i<count;i++){
+          particles.push({
+            x: rand(0,w),
+            y: rand(0,h),
+            r: rand(0.6,2.4),
+            vx: rand(-0.15,0.15),
+            vy: rand(-0.05,0.05),
+            hue: rand(180,300),
+            alpha: rand(0.08,0.28)
+          });
+        }
+      }
+      create();
+      function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; particles.length=0; create(); }
+      addEventListener('resize', resize);
+
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of particles){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < -50) p.x = w + 50;
+          if(p.x > w + 50) p.x = -50;
+          if(p.y < -50) p.y = h + 50;
+          if(p.y > h + 50) p.y = -50;
+          ctx.beginPath();
+          const g = ctx.createRadialGradient(p.x,p.y,p.r*0.1,p.x,p.y,p.r*6);
+          g.addColorStop(0, `hsla(${p.hue},85%,65%,${p.alpha})`);
+          g.addColorStop(1, `hsla(${p.hue},85%,55%,0)`);
+          ctx.fillStyle = g;
+          ctx.arc(p.x,p.y,p.r*6,0,Math.PI*2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    /* TYPEWRITER */
+    (function(){
+      const phrases = ['Future AI Innovator','Web Developer','Machine Learning Enthusiast','Python Developer'];
+      const el = document.getElementById('typewriter');
+      let i = 0, j = 0, forward = true;
+      function tick(){
+        if(!el) return;
+        const txt = phrases[i];
+        if(forward){ j++; el.textContent = ' — ' + txt.slice(0,j); if(j===txt.length){ forward=false; setTimeout(tick,900); return; } }
+        else { j--; el.textContent = ' — ' + txt.slice(0,j); if(j===0){ forward=true; i=(i+1)%phrases.length; } }
+        setTimeout(tick, 70);
+      }
+      tick();
+    })();
+
+    /* REVEAL ON SCROLL */
+    (function(){
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+          if(e.isIntersecting){ e.target.classList.add('visible'); o.unobserve(e.target); }
+        });
+      },{threshold:0.12});
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    })();
+
+    /* NAV HIGHLIGHT */
+    (function(){
+      const navLinks = document.querySelectorAll('nav.primary a');
+      const sections = document.querySelectorAll('section.section, section.hero');
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            const id = entry.target.id || 'home';
+            navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === ('#'+id)));
+          }
+        });
+      },{threshold:0.45});
+      sections.forEach(s => obs.observe(s));
+      // smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          const target = a.getAttribute('href'); if(!target) return;
+          const el = document.querySelector(target);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    })();
+
+    /* COUNTERS */
+    (function(){
+      function animate(id,to,duration=1000){
+        const el = document.getElementById(id); if(!el) return;
+        let start=null;
+        function step(ts){
+          if(!start) start=ts;
+          const progress = Math.min((ts-start)/duration,1);
+          el.textContent = Math.floor(progress * to);
+          if(progress<1) requestAnimationFrame(step);
+          else el.textContent = to;
+        }
+        requestAnimationFrame(step);
+      }
+      const resumeSection = document.getElementById('resume');
+      const ob = new IntersectionObserver((entries, o)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            animate('countProjects',3,900);
+            animate('countIntern',2,900);
+            animate('countCgpa',8,900);
+            o.disconnect();
+          }
+        });
+      },{threshold:0.2});
+      if(resumeSection) ob.observe(resumeSection);
+    })();
+
+    /* TOGGLE RESUME */
+    (function(){
+      const btn = document.getElementById('toggleResume');
+      const content = document.getElementById('resumeContent');
+      if(btn && content){
+        btn.addEventListener('click', ()=>{
+          if(content.style.display === 'none'){ content.style.display='block'; btn.textContent='Hide Full Resume'; }
+          else { content.style.display='none'; btn.textContent='Show Full Resume'; }
+        });
+      }
+    })();
+
+    /* CONTACT FORM -> mailto */
+    (function(){
+      const form = document.getElementById('contactForm'), result = document.getElementById('formResult');
+      if(form){
+        form.addEventListener('submit', function(e){
+          e.preventDefault();
+          const d = new FormData(this);
+          const name = d.get('name')||'';
+          const email = d.get('email')||'';
+          const msg = d.get('message')||'';
+          const subject = encodeURIComponent('Portfolio contact from ' + name);
+          const body = encodeURIComponent('Name: ' + name + '\\nEmail: ' + email + '\\n\\nMessage:\\n' + msg);
+          window.location.href = 'mailto:urzdileep@gmail.com?subject=' + subject + '&body=' + body;
+          if(result) result.textContent = 'Opening your email client — if nothing happens, email urzdileep@gmail.com directly.';
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
